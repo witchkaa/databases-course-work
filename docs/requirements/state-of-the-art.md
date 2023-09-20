@@ -78,7 +78,7 @@
 - Повертатися назад важко
 - Якщо стався збій на якомусь етапі, його наслідки видно тільки в кінці
 - Негнучка
-![Схема каскадноїмоделі](https://evergreens.com.ua/assets/images/articles/systems/waterfall_ua%281%29.png)
+![Схема каскадної моделі](https://evergreens.com.ua/assets/images/articles/systems/waterfall_ua%281%29.png)
 ### Ітераційна модель
 Передбачає розбиття проекту на частини (етапи, ітерації) і проходження етапів життєвого циклу на кожному з них. Кожен етап є закінченим сам по собі, сукупність етапів формує кінцевий результат. На кожній ітерації ми працюємо з одним і тим же продуктом і в кінці кожної ітерації отримуємо результат, яким можна користуватися (звісно з певними обмеженнями).
 
@@ -244,7 +244,7 @@ _Незважаючи на обширний обсяг досліджень, о�
 4. [Інститут Управління Проєктами (PMI)](https://pmiukraine.org/about/)
 5. [Методологія розробки програмного забезпечення](https://uk.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%8F_%D1%80%D0%BE%D0%B7%D1%80%D0%BE%D0%B1%D0%BA%D0%B8_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%B1%D0%B5%D0%B7%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D1%8F)
 6. [Класифікація за ядрами](https://uk.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%8F_%D1%80%D0%BE%D0%B7%D1%80%D0%BE%D0%B1%D0%BA%D0%B8_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%B1%D0%B5%D0%B7%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D1%8F#%D0%9A%D0%BB%D0%B0%D1%81%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F_%D0%B7%D0%B0_%D1%8F%D0%B4%D1%80%D0%B0%D0%BC%D0%B8)
-7. [Життєвий цикл пз](https://evergreens.com.ua/ua/articles/software-development-metodologies.html)
+7. [Життєвий цикл ПЗ](https://evergreens.com.ua/ua/articles/software-development-metodologies.html)
 8. About Github Projects [[1]](https://docs.github.com/ru/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)[[2]](https://docs.github.com/ru/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
 9. About Trello [[1]](https://www.businessinsider.com/guides/tech/what-is-trello)[[2]](https://intellipaat.com/blog/what-is-trello/)
 10. About Basecamp [[1]](https://basecamp.com/project-management-software)[[2]](https://www.proofhub.com/articles/basecamp-project-management)
