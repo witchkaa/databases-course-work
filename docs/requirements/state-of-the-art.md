@@ -83,6 +83,8 @@
 
 ![Схема каскадної моделі](https://evergreens.com.ua/assets/images/articles/systems/waterfall_ua%281%29.png)
 
+*Схема каскадної моделі* [[1]](https://evergreens.com.ua/assets/images/articles/systems/waterfall_ua%281%29.png)
+
 ### Ітераційна модель
 Передбачає розбиття проекту на частини (етапи, ітерації) і проходження етапів життєвого циклу на кожному з них. Кожен етап є закінченим сам по собі, сукупність етапів формує кінцевий результат. На кожній ітерації ми працюємо з одним і тим же продуктом і в кінці кожної ітерації отримуємо результат, яким можна користуватися (звісно з певними обмеженнями).
 
@@ -96,6 +98,8 @@
 -   Збільшення витрат на тестування та забезпечення якості.
 
 ![Схема ітераційної моделі](https://evergreens.com.ua/assets/images/articles/systems/iteration%20model.png)
+
+*Схема ітераційної моделі* [[2]](https://evergreens.com.ua/assets/images/articles/systems/iteration%20model.png)
 
 **Розглянемо підвиди ітераційної моделі (спіральну та інкрементну):**
 #### Спіральна модель
@@ -113,6 +117,8 @@
 
 ![Схема спіральної моделі](https://training.qatestlab.com/wp-content/uploads/2021/09/Spiral-model.jpg)
 
+*Схема спіральної моделі* [[3]](https://training.qatestlab.com/wp-content/uploads/2021/09/Spiral-model.jpg)
+
 #### Інкрементна модель
 Принцип, що лежить в основі інкрементної моделі, має на увазі розширення можливостей, добудовування модулів і функцій програми. Буквальний переклад слова інкремент: «збільшення на один». Це «збільшення на один» застосовується в тому числі для позначення версій продукту. **Продукт розбивається на версії за ітераціями.**
 
@@ -127,7 +133,10 @@
 -  **Складність інтеграції:** Інкременти повинні бути ефективно інтегровані між собою, що може вимагати додаткових зусиль.
 -  **Збільшена складність управління:** Управління багатьма інкрементами може бути складнішим у порівнянні з іншими моделями розробки.
 -  **Потреба у постійному оновленні:** Кожен інкремент потребує постійного оновлення та підтримки.
+
 ![Схема інкрементної моделі](https://training.qatestlab.com/wp-content/uploads/2021/09/incremental_model.jpg)
+
+*Схема інкрементної моделі* [[4]](https://training.qatestlab.com/wp-content/uploads/2021/09/incremental_model.jpg)
 
 *Загалом, вибір між спіральною моделлю і інкрементною моделлю залежить від конкретних вимог проекту, бюджету, строків і рівня ризику. Обидва підходи можуть бути ефективними, якщо вони правильно відповідають контексту проекту.*
 
@@ -156,6 +165,8 @@ Agile - це методологія управління проєктами, я�
 
 
 ![Схема Agile](https://kanbanize.com/wp-content/uploads/website-images/Agile/traditional_vs_agile_planning.png)
+
+*Схема Agile* [[5]](https://kanbanize.com/wp-content/uploads/website-images/Agile/traditional_vs_agile_planning.png)
 ### Lean
 
 Ідея підходу Lean полягає в тому, що ми ощадливо ставимося до ресурсів (у тому числі часу) і вирішуємо завдання найпростішим способом. Наприклад: ми не робимо весь продукт, щоб зрозуміти, що він нікому не потрібен - ми робимо лендінг і форму підписки і даємо на нього рекламу, щоб перевірити, що цей продукт викликає інтерес клієнтів і прийняти усвідомлене рішення про необхідність розробки.
@@ -173,6 +184,8 @@ Agile - це методологія управління проєктами, я�
 - **Не підходить до складних інноваційних проєктів:**  Lean зазвичай краще підходить для оптимізації існуючих процесів, а не для революційних змін.
 
 ![Схема Lean](https://kruschecompany.com/wp-content/uploads/2021/10/lean.png)
+
+*Схема Lean* [[6]](https://kruschecompany.com/wp-content/uploads/2021/10/lean.png)
 ### Гнучкі методології
 Нижче наведено короткий опис основних гнучких методологій розробки ПЗ.
 - **Scrum:** Ґрунтується на понятті спринту (sprint), протягом якого виконується робота над продуктом. Перед початком кожного спринту проводиться планування (Sprint Planning), на якому проводиться оцінка вмісту списку завдань із розвитку продукту (Product Backlog) і формування беклога на спринт (Sprint Backlog), у рамках яких і діє команда. Для спринту завжди існують обмеження по часу, зазвичай від тижня до місяця. Життя продукту таким чином розбита на рівні по тривалості спринти.
@@ -254,11 +267,11 @@ _Незважаючи на обширний обсяг досліджень, о�
 4. [Інститут Управління Проєктами (PMI)](https://pmiukraine.org/about/)
 5. [Методологія розробки програмного забезпечення](https://uk.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%8F_%D1%80%D0%BE%D0%B7%D1%80%D0%BE%D0%B1%D0%BA%D0%B8_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%B1%D0%B5%D0%B7%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D1%8F)
 6. [Класифікація за ядрами](https://uk.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%8F_%D1%80%D0%BE%D0%B7%D1%80%D0%BE%D0%B1%D0%BA%D0%B8_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%B1%D0%B5%D0%B7%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D1%8F#%D0%9A%D0%BB%D0%B0%D1%81%D0%B8%D1%84%D1%96%D0%BA%D0%B0%D1%86%D1%96%D1%8F_%D0%B7%D0%B0_%D1%8F%D0%B4%D1%80%D0%B0%D0%BC%D0%B8)
-7. [Життєвий цикл ПЗ](https://evergreens.com.ua/ua/articles/software-development-metodologies.html)
-8. About Github Projects [[1]](https://docs.github.com/ru/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)[[2]](https://docs.github.com/ru/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
-9. About Trello [[1]](https://www.businessinsider.com/guides/tech/what-is-trello)[[2]](https://intellipaat.com/blog/what-is-trello/)
-10. About Basecamp [[1]](https://basecamp.com/project-management-software)[[2]](https://www.proofhub.com/articles/basecamp-project-management)
-11. About Nifty [[1]](https://www.cloudwards.net/nifty-review/)[[2]](https://project-management.com/nifty-project-management-software-review/)
-12. [About Backlog](https://www.top10.com/project-management/reviews/backlog)
-13. [About Asana](https://www.simplilearn.com/tutorials/asana-tutorial/what-is-asana-project-management-tool)
-14. [About Miro](https://www.innovationtraining.org/what-is-miro-and-how-to-use-miro-for-collaboration/)
+7. [Життєвий цикл пз](https://evergreens.com.ua/ua/articles/software-development-metodologies.html)
+8. Схеми та малюнки [[1]](https://evergreens.com.ua/assets/images/articles/systems/waterfall_ua%281%29.png) [[2]](https://evergreens.com.ua/assets/images/articles/systems/iteration%20model.png) [[3]](https://training.qatestlab.com/wp-content/uploads/2021/09/Spiral-model.jpg) [[4]](https://training.qatestlab.com/wp-content/uploads/2021/09/incremental_model.jpg) [[5]](https://kanbanize.com/wp-content/uploads/website-images/Agile/traditional_vs_agile_planning.png) [[6]](https://kruschecompany.com/wp-content/uploads/2021/10/lean.png)
+9. About Github Projects [[1]](https://docs.github.com/ru/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards) [[2]](https://docs.github.com/ru/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
+10. About Trello [[1]](https://www.businessinsider.com/guides/tech/what-is-trello) [[2]](https://intellipaat.com/blog/what-is-trello/)
+11. About Basecamp [[1]](https://basecamp.com/project-management-software) [[2]](https://www.proofhub.com/articles/basecamp-project-management)
+12. About Nifty [[1]](https://www.cloudwards.net/nifty-review/) [[2]](https://project-management.com/nifty-project-management-software-review/)
+13. [About Backlog](https://www.top10.com/project-management/reviews/backlog)
+14. [About Asana](https://www.simplilearn.com/tutorials/asana-tutorial/what-is-asana-project-management-tool)
