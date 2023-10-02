@@ -39,7 +39,7 @@
     usecase "<b>UserLogIn</b>\nВхід користувача" as UserLogIn
     usecase "<b>UserGitHubLogIn</b>\nВхід користувача за допомогою GitHub" as UserGitHubLogIn
     usecase "<b>EditUser</b>\nРедагувати дані користувача" as EditUser
-    usecase "<b>TaskManage</b>\nКерувати завдданнями" as TaskManage
+    usecase "<b>TaskManage</b>\nКерувати завданнями" as TaskManage
     usecase "<b>CreateTask</b>\nСтворити завдання" as CreateTask
     usecase "<b>EditTask</b>\nРедагувати завдання" as EditTask
     usecase "<b>DeleteTask</b>\nВидалити завдання" as DeleteTask
