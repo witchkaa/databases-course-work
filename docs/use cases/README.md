@@ -22,32 +22,44 @@
 >
 
 @startuml
+
 !theme metal
 
 
+    skinparam activityFontSize 100
+    skinparam activityDiamondFontSize 100
+    skinparam activityArrowFontSize 100
+
     actor "Робітник" as Collaborator
 
-    usecase "<b>UserSignIn</b>\nРеєстрація" as UserSignIn
-    usecase "<b>UserGitHubSignIn</b>\nРеєстрація за допомогою GitHub" as UserGitHubSignIn
-    usecase "<b>UserLogIn</b>\nВхід" as UserLogIn
-    usecase "<b>UserGitHubLogIn</b>\nВхід за допомогою GitHub" as UserGitHubLogIn
+    usecase "<b>SignIn</b>\nРеєстрація" as SignIn
+    usecase "<b>UserSignIn</b>\nРеєстрація користувача" as UserSignIn
+    usecase "<b>UserGitHubSignIn</b>\nРеєстрація користувача за допомогою GitHub" as UserGitHubSignIn
+    usecase "<b>LogIn</b>\nВхід" as LogIn
+    usecase "<b>UserLogIn</b>\nВхід користувача" as UserLogIn
+    usecase "<b>UserGitHubLogIn</b>\nВхід користувача за допомогою GitHub" as UserGitHubLogIn
     usecase "<b>EditUser</b>\nРедагувати дані користувача" as EditUser
+    usecase "<b>TaskManage</b>\nКерувати завдданнями" as TaskManage
     usecase "<b>CreateTask</b>\nСтворити завдання" as CreateTask
     usecase "<b>EditTask</b>\nРедагувати завдання" as EditTask
     usecase "<b>DeleteTask</b>\nВидалити завдання" as DeleteTask
     usecase "<b>FilterTask</b>\nВідфільтрувати завдання" as FilterTask
     usecase "<b>CommentTask</b>\nКоментувати завдання" as CommentTask
 
-    Collaborator -l-> UserSignIn
-    Collaborator -l-> UserGitHubSignIn
-    Collaborator -r-> UserGitHubLogIn
-    Collaborator -r-> UserLogIn
-    Collaborator -d-> EditUser
-    Collaborator -d-> CommentTask
-    Collaborator -u-> FilterTask
-    Collaborator -u-> DeleteTask
-    Collaborator -u-> EditTask
-    Collaborator -u-> CreateTask
+    Collaborator -l-> SignIn
+    SignIn <.u. UserGitHubSignIn
+    SignIn <.d. UserSignIn
+    Collaborator -r-> LogIn
+    LogIn <.u. UserGitHubLogIn
+    LogIn <.d. UserLogIn
+    Collaborator --d-> EditUser
+    Collaborator -u-> TaskManage
+    TaskManage <.u. CommentTask
+    TaskManage <.u. FilterTask
+    TaskManage <.u. DeleteTask
+    TaskManage <.u. EditTask
+    TaskManage <.u. CreateTask
+
 
     note bottom of Collaborator #4e4e4e
 
