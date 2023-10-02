@@ -12,7 +12,6 @@
 
 # Робітник
 
-```md
 
 <center style="
     border-radius:4px;
@@ -23,9 +22,8 @@
 
 @startuml
 
-!theme metal
 
-
+    skinparam noteFontColor white
     skinparam activityFontSize 100
     skinparam activityDiamondFontSize 100
     skinparam activityArrowFontSize 100
@@ -72,7 +70,7 @@
 @enduml
 
 </center>
-```
+
 
 **Діаграма прецедентів**
 
