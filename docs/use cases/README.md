@@ -1,32 +1,85 @@
 # Модель прецедентів
 
-В цьому файлі необхідно перелічити всі документи, розроблені в проекті та дати посилання на них.
-
-*Модель прецедентів повинна містити загальні оглядові діаграми та специфікації прецедентів.*
-
-
-
-Вбудовування зображень діаграм здійснюється з використанням сервісу [plantuml.com](https://plantuml.com/). 
-
-В markdown-файлі використовується опис діаграми
-
-# Робітник
-
+## Загальна схема
 
 <center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;"
+   border-radius:4px;
+   border: 1px solid #cfd7e6;
+   box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+   padding: 1em;"
 >
+
 
 @startuml
 
+    skinparam noteFontColor white
+
+    actor "Робітник" as Collaborator
+
+
+    usecase "<b>SignIn</b>\nЗареєструватися" as SignIn
+    usecase "<b>LogIn</b>\nУвійти в систему" as LogIn
+    usecase "<b>TaskManage</b>\nКерувати завданнями" as TaskManage
+    usecase "<b>EditUser</b>\nРедагувати дані користувача" as EditUser
+
+
+    Collaborator -r-> SignIn
+    Collaborator -u-> LogIn
+    Collaborator -l-> TaskManage
+    Collaborator -u-> EditUser
+
+
+
+
+    note bottom of Collaborator  #4e4e4e
+
+       Робітник може у повній мірі керувати лише <b>власними завданнями</b>
+       та на призначених йому завданнях він має можливість тільки
+       <b>змінювати статус</b> (todo/in progress/done/in rewiew).
+       <b>Фільтрувати</b> та <b>коментувати</b> робітник може <b>всі</b>
+       <b>завдання проекту</b>.
+       Робітник може у повній мірі виконувати дії над всіма Task'ами у випадку,
+       коли в проєкті <b>НЕМАЄ ТІМЛІДА</b>
+
+    end note
+
+actor "Тімлід" as Teamlead
+
+    usecase "<b>ProjectManage</b>\nКерувати проектом" as ProjectManage
+    usecase "<b>SprintManage</b>\nКерувати спринтом" as SprintManage
+    usecase "<b>TeamManage</b>\nКерувати командою" as TeamManage
+
+
+    Teamlead -> ProjectManage
+    Teamlead -d-> SprintManage
+    Teamlead -l-> TeamManage
+    Teamlead -u-|> Collaborator
+
+    actor "Адміністратор системи" as Admin
+
+    usecase "<b>DataManage</b>\nКерувати даними системи" as DataManage
+
+    Admin --> DataManage
+    Admin -u-|> Teamlead
+
+@enduml
+
+
+</center>
+
+## Робітник
+
+<center style="
+   border-radius:4px;
+   border: 1px solid #cfd7e6;
+   box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+   padding: 1em;"
+>
+
+
+@startuml
 
     skinparam noteFontColor white
-    skinparam activityFontSize 100
-    skinparam activityDiamondFontSize 100
-    skinparam activityArrowFontSize 100
 
     actor "Робітник" as Collaborator
 
@@ -45,28 +98,61 @@
     usecase "<b>CommentTask</b>\nКоментувати завдання" as CommentTask
 
     Collaborator -l-> SignIn
-    SignIn <.u. UserGitHubSignIn
-    SignIn <.d. UserSignIn
+    SignIn <.u. UserGitHubSignIn:extends
+    SignIn <.d. UserSignIn:extends
     Collaborator -r-> LogIn
-    LogIn <.u. UserGitHubLogIn
-    LogIn <.d. UserLogIn
+    LogIn <.u. UserGitHubLogIn:extends
+    LogIn <.d. UserLogIn:extends
     Collaborator --d-> EditUser
     Collaborator -u-> TaskManage
-    TaskManage <.u. CommentTask
-    TaskManage <.u. FilterTask
-    TaskManage <.u. DeleteTask
-    TaskManage <.u. EditTask
-    TaskManage <.u. CreateTask
-
+    TaskManage <.u. CommentTask:extends
+    TaskManage <.u. FilterTask:extends
+    TaskManage <.u. DeleteTask:extends
+    TaskManage <.u. EditTask:extends
+    TaskManage <.u. CreateTask:extends
 
     note bottom of Collaborator #4e4e4e
 
-        *Робітник може виконувати дії над Task'ами у випадку,
-        коли в проєкті <b>НЕМАЄ ТІМЛІДА</b>
-        Робітник може <b>фільтрувати</b> та <b>коментувати</b> <b>будь-які</b>
-        завдання проєкту.
+       Робітник може у повній мірі керувати лише <b>власними завданнями</b>
+       та на призначених йому завданнях він має можливість тільки
+       <b>змінювати статус</b> (todo/in progress/done/in rewiew).
+       <b>Фільтрувати</b> та <b>коментувати</b> робітник може <b>всі</b>
+       <b>завдання проекту</b>.
+       Робітник може у повній мірі виконувати дії над всіма Task'ами у випадку,
+       коли в проєкті <b>НЕМАЄ ТІМЛІДА</b>
 
     end note
+
+@enduml
+
+
+</center>
+
+## Тімлід
+
+## Адміністратор системи
+
+<center style="
+   border-radius:4px;
+   border: 1px solid #cfd7e6;
+   box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+   padding: 1em;"
+>
+
+
+@startuml
+
+    actor "Адміністратор системи" as Admin
+    usecase "<b>DataManage</b>\nКерувати даними системи" as DataManage
+    usecase "<b>BanUser</b>\nЗаблокувати користувача" as BanUser
+    usecase "<b>UnBanUser</b>\nРозблокувати користувача" as UnBanUser
+    usecase "<b>UserSupport</b>\nВирішити проблему користувача" as UserSupport
+
+    Admin -d-> DataManage
+    Admin -u-> UserSupport
+    BanUser .u.> DataManage:extends
+    UnBanUser .u.> DataManage:extends
+
 @enduml
 
 </center>
@@ -75,6 +161,7 @@
 **Діаграма прецедентів**
 
 яка буде відображена наступним чином
+
 
 <center style="
     border-radius:4px;
