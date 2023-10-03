@@ -43,7 +43,7 @@
 
     end note
 
-actor "Тімлід" as Teamlead
+    actor "Тімлід" as Teamlead
 
     usecase "<b>ProjectManage</b>\nКерувати проектом" as ProjectManage
     usecase "<b>SprintManage</b>\nКерувати спринтом" as SprintManage
@@ -58,8 +58,10 @@ actor "Тімлід" as Teamlead
     actor "Адміністратор системи" as Admin
 
     usecase "<b>DataManage</b>\nКерувати даними системи" as DataManage
+    usecase "<b>UserSupport</b>\nВирішити проблему користувача" as UserSupport
 
     Admin --> DataManage
+    Admin --> UserSupport
     Admin -u-|> Teamlead
 
 @enduml
