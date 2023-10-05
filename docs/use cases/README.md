@@ -138,21 +138,23 @@
    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
    padding: 1em;"
 >
+
+
 @startuml
 
     actor "Тімлід" as Lead
 
     usecase "<b>TeamManage</b>\nКерувати командою" as TeamManage
-    usecase "<b>MEMBER.ADD</b>\nДодати користувача" as AddMember
-    usecase "<b>MEMBER.DELETE</b>\nВидалити користувача" as DeleteMember
+    usecase "<b>AddMember</b>\nДодати користувача" as AddMember
+    usecase "<b>DeleteMember</b>\nВидалити користувача" as DeleteMember
     
     usecase "<b>ProjectManage</b>\nКерувати проєктом" as ProjectManage
-    usecase "<b>CREATE.PROJECT</b>\nСтворити проект" as CreateProject
-    usecase "<b>DELETE.PROJECT</b>\nВидалити проект" as DeleteProject
+    usecase "<b>CreateProject</b>\nСтворити проект" as CreateProject
+    usecase "<b>DeleteProject</b>\nВидалити проект" as DeleteProject
     
     usecase "<b>SprintManage</b>\nКерувати Спрінтом" as SprintManage
-    usecase "<b>CREATE.SPRINT</b>\nСтворити спринт" as CreateSprint
-    usecase "<b>FINISH.SPRINT</b>\nЗавершити спринт" as FinishSprint
+    usecase "<b>CreateSprint</b>\nСтворити спринт" as CreateSprint
+    usecase "<b>FinishSprint</b>\nЗавершити спринт" as FinishSprint
     
     Lead -d-> TeamManage
     AddMember .u.> TeamManage:extends
@@ -167,6 +169,8 @@
     FinishSprint .u.> SprintManage:extends
 
 @enduml
+
+
 </center>
 
 ## Адміністратор системи
