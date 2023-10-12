@@ -79,6 +79,7 @@ Sprint.enddate -d-* Sprint
 @enduml
 
 ## ER-модель
+
 @startuml
 
 skinparam entity {
@@ -87,12 +88,12 @@ BackgroundColor #f7f711
 
 package UserAdministration {
 entity User {
-isBanned: TINYINT
+id: INT
 nickname: TEXT
 email: TEXT
 password: TEXT
 photo: IMAGE
-id: INT
+isBanned: TINYINT
 }
 }
 
@@ -113,7 +114,7 @@ motto: TEXT
 }
 
 package AccessControl {
-entity Role {
+enum Role <<Enumeration>> {
 id: NUMBER
 name: TEXT
 description: TEXT
@@ -146,7 +147,7 @@ description: TEXT
 deadline: DATETIME
 }
 
-entity Tag {
+enum Tag <<Enumeration>> {
 id: NUMBER
 name: TEXT
 description: TEXT
@@ -189,8 +190,10 @@ Assignment "0,*" -u-> "1,1" Task
 Task "0,*" -u-> "1,1" Tag
 Task_comment "0,*" -d-> "1,1" Member :author
 Sprint "0,1" -> "1,*" Task
+Project "0,1" -> Project
 
 @enduml
+
 ## Реляційна схема
 
 ![Реляційна схема](https://github.com/Yana-Koroliuk/databases-course-work/assets/59470968/e63ec3a6-0e09-4572-948c-4d60da68793b)
