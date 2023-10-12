@@ -1,6 +1,6 @@
 # Проєктування бази даних
 
-## Модель бізнес-об'єктів 
+## Модель бізнес-об'єктів
 
 @startuml
 
@@ -88,41 +88,41 @@ BackgroundColor #f7f711
 
 package UserAdministration {
 entity User {
-id: INT
-nickname: TEXT
-email: TEXT
-password: TEXT
-photo: IMAGE
-isBanned: TINYINT
+    id: UUID
+    nickname: TEXT
+    email: TEXT
+    password: TEXT
+    photo: IMAGE
+    isBanned: TINYINT
 }
 }
 
 entity Member {
-id: NUMBER
+    id: NUMBER
 }
 
 entity Project {
-id: UUID
-name: TEXT
-description: TEXT
+    id: UUID
+    name: TEXT
+    description: TEXT
 }
 
 entity Team {
-id: NUMBER
-name: TEXT
-motto: TEXT
+    id: NUMBER
+    name: TEXT
+    motto: TEXT
 }
 
 package AccessControl {
-enum Role <<Enumeration>> {
-id: NUMBER
-name: TEXT
-description: TEXT
+enum Role <<ENUMERATION>> #f7f711 {
+    id: NUMBER
+    name: TEXT
+    description: TEXT
 }
 
 entity Grant {
-id: NUMBER
-action: TEXT
+    id: NUMBER
+    action: TEXT
 }
 
 object developer
@@ -136,36 +136,36 @@ administrator .u.> Role :instanceOf
 
 package TaskManagement {
 entity Assignment {
-id: NUMBER
-datetime: DATETIME
+    id: NUMBER
+    datetime: DATETIME
 }
 
 entity Task {
-id: NUMBER
-name: TEXT
-description: TEXT
-deadline: DATETIME
+    id: NUMBER
+    name: TEXT
+    description: TEXT
+    deadline: DATETIME
 }
 
-enum Tag <<Enumeration>> {
-id: NUMBER
-name: TEXT
-description: TEXT
+enum Tag <<ENUMERATION>> #f7f711 {
+    id: NUMBER
+    name: TEXT
+    description: TEXT
 }
 
 entity Task_comment {
-id: NUMBER
-subject: TEXT
-text: TEXT
-datetime: DATETIME
+    id: NUMBER
+    subject: TEXT
+    text: TEXT
+    datetime: DATETIME
 }
 
 entity Sprint {
-id: NUMBER
-name: TEXT
-goal: TEXT
-startdate: DATE
-enddate: DATE
+    id: NUMBER
+    name: TEXT
+    goal: TEXT
+    startdate: DATE
+    enddate: DATE
 }
 
 object done
@@ -190,7 +190,7 @@ Assignment "0,*" -u-> "1,1" Task
 Task "0,*" -u-> "1,1" Tag
 Task_comment "0,*" -d-> "1,1" Member :author
 Sprint "0,1" -> "1,*" Task
-Project "0,1" -> Project
+Project "0,*" -o "0,1" Project
 
 @enduml
 
