@@ -196,7 +196,7 @@ Project "0,1" -> Project
 
 ## Реляційна схема
 
-![Реляційна схема](https://github.com/Yana-Koroliuk/databases-course-work/assets/59470968/e63ec3a6-0e09-4572-948c-4d60da68793b)
+![Реляційна схема](https://github.com/Yana-Koroliuk/databases-course-work/assets/59470968/13f7b5d6-45c2-4903-9218-2677e5b71e11)
 
 
 
