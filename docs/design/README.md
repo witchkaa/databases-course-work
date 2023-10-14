@@ -14,12 +14,12 @@ entity User.isBanned
 
 User.nickname -d-* User
 User.email -u-* User
-User.photo -r-* User
+User.photo -l-* User
 User.password -d-* User
 User.isBanned -u-* User
 
 entity Collaborator
-Collaborator "0,*" -l- "1,1" User
+Collaborator "0,*" -r- "1,1" User
 
 entity Role
 Collaborator "0,*" -d- "1,1" Role
@@ -31,15 +31,15 @@ entity Permission
 Permission "1,1" -r- "0,*" Grant
 
 entity Team
-Team "1,1" -l- "0,*" Collaborator
+Collaborator "0,*" -l- "1,1" Team
 
 entity Project
-Project "1,1" -l- "0,*" Team
+Project "1,1" -r- "0,*" Team
 
 entity Project.name
 entity Project.description
 
-Project.name -l-* Project
+Project.name -r-* Project
 Project.description -u-* Project
 
 entity Task
@@ -68,6 +68,8 @@ Task.comment "0,*" - "1,1" Collaborator :author
 entity Sprint
 
 Sprint "1,1" -r- "0,*" Task
+Sprint "0,*" -d- "1,1" Project
+
 
 entity Sprint.name
 entity Sprint.goal
@@ -201,8 +203,8 @@ Action "0,*" -u-> "0,1" Task
 Action "0,*" -u-> "0,1" Assignment
 
 Collaborator "0,*" -d-> "1,1" User
-Team "1,1" -l-> "0,*" Collaborator
-Team "0,*" -r-> "1,1" Project
+Team "1,1" -u-> "0,*" Collaborator
+Team "0,*" -u-> "1,1" Project
 Collaborator "0,*" --> "1,1" Role
 Grant "0,*" -r-> "1,1" Role
 Grant "0,*" -l-> "1,1" Permission
@@ -213,6 +215,7 @@ Label "0,*" -u-> "1,1" Tag
 Task_comment "0,*" -d-> "1,1" Collaborator :author
 Task_comment "0,*" -u-> "1,1" Task
 Task "0,*" -l-> "1,1" Sprint
+Sprint "0,*" -d-> "1,1" Project
 
 @enduml
 
