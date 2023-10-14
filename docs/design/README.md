@@ -18,53 +18,56 @@ User.photo -r-* User
 User.password -d-* User
 User.isBanned -u-* User
 
-entity Member
-Member "0,*" -l- "1,1" User
+entity Collaborator
+Collaborator "0,*" -l- "1,1" User
 
 entity Role
-Member "0,*" -d- "1,1" Role
+Collaborator "0,*" -d- "1,1" Role
 
 entity Grant
-Grant "1,*" -u- "0,*" Role
+Grant "0,*" -u- "1,1" Role
+
+entity Permission
+Permission "1,1" -r- "0,*" Grant
 
 entity Team
-Team "0,1" -u- "1,*" Member
+Team "1,1" -l- "0,*" Collaborator
 
 entity Project
-Project "1,1" -d- "0,*" Team
-Project "1,1" -l- "0,*" Member
+Project "1,1" -l- "0,*" Team
 
 entity Project.name
 entity Project.description
 
-Project.name -d-* Project
-Project.description -d-* Project
-Project "0,*" -o "0,1" Project
+Project.name -l-* Project
+Project.description -u-* Project
 
 entity Task
 entity Assignment
 
 Task "1,1" -d- "0,*" Assignment
-Member "1,1" -u- "0,*" Assignment
+Collaborator "1,1" -u- "0,*" Assignment
 
 entity Task.name
 entity Task.description
 entity Task.deadline
 entity Tag
+entity Label
 entity Task.comment
 
 Task.name -d-* Task
 Task.description -d-* Task
 Task.deadline -d-* Task
 
-Tag "1,1" -l- "0,*" Task
+Label "0,*" -l- "1,1" Task
+Tag "1,1" -l- "0,*" Label
 
 Task.comment "0,*" -l- "1,1" Task
-Task.comment "0,*" - "1,1" Member :author
+Task.comment "0,*" - "1,1" Collaborator :author
 
 entity Sprint
 
-Sprint "0,1" -r- "1,*" Task
+Sprint "1,1" -r- "0,*" Task
 
 entity Sprint.name
 entity Sprint.goal
@@ -75,6 +78,17 @@ Sprint.name -d-* Sprint
 Sprint.goal -d-* Sprint
 Sprint.startdate -d-* Sprint
 Sprint.enddate -d-* Sprint
+
+entity Action
+entity Action.date
+
+Action.date -r-* Action
+
+Action "0,*" -r- "0,1" Assignment
+Action "0,*" -d- "0,1" Collaborator
+Action "0,*" -u- "0,1" Sprint
+Action "0,*" -u- "0,1" Task
+
 
 @enduml
 
@@ -97,8 +111,14 @@ entity User {
 }
 }
 
-entity Member {
+entity Collaborator {
     id: NUMBER
+}
+
+entity Action {
+    id: NUMBER
+    datetime: DATETIME
+    description: TEXT
 }
 
 entity Project {
@@ -120,9 +140,13 @@ enum Role <<ENUMERATION>> #f7f711 {
     description: TEXT
 }
 
-entity Grant {
+entity Permission {
     id: NUMBER
     action: TEXT
+    description: TEXT
+}
+
+entity Grant {
 }
 
 object developer
@@ -144,6 +168,7 @@ entity Task {
     id: NUMBER
     name: TEXT
     description: TEXT
+    creationDate: DATETIME
     deadline: DATETIME
 }
 
@@ -151,6 +176,9 @@ enum Tag <<ENUMERATION>> #f7f711 {
     id: NUMBER
     name: TEXT
     description: TEXT
+}
+
+entity Label {
 }
 
 entity Task_comment {
@@ -179,18 +207,24 @@ done .d.> Tag :instanceOf
 in_review .d.> Tag :instanceOf
 }
 
-Member "0,*" -d-> "1,1" User
-Member "0,*" -r-> "1,1" Project
-Team "0,1" --> "1,*" Member
-Team "0,*" -d-> "1,1" Project
-Member "0,*" --> "1,1" Role
-Role "0,*" -l-> "1,*" Grant
-Assignment "0,*" -d-> "1,1" Member
+Action "0,*" -r-> "0,1" Collaborator
+Action "0,*" -u-> "0,1" Sprint
+Action "0,*" -u-> "0,1" Task
+Action "0,*" -u-> "0,1" Assignment
+
+Collaborator "0,*" -d-> "1,1" User
+Team "1,1" -l-> "0,*" Collaborator
+Team "0,*" -r-> "1,1" Project
+Collaborator "0,*" --> "1,1" Role
+Grant "0,*" -r-> "1,1" Role
+Grant "0,*" -l-> "1,1" Permission
+Assignment "0,*" -d-> "1,1" Collaborator
 Assignment "0,*" -u-> "1,1" Task
-Task "0,*" -u-> "1,1" Tag
-Task_comment "0,*" -d-> "1,1" Member :author
-Sprint "0,1" -> "1,*" Task
-Project "0,*" -o "0,1" Project
+Label "0,*" -d-> "1,1" Task
+Label "0,*" -u-> "1,1" Tag
+Task_comment "0,*" -d-> "1,1" Collaborator :author
+Task_comment "0,*" -u-> "1,1" Task
+Task "0,*" -l-> "1,1" Sprint
 
 @enduml
 
