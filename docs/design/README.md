@@ -230,4 +230,4 @@ Task "0,*" -l-> "1,1" Sprint
 
 ## Реляційна схема
 
-![Реляційна схема](https://github.com/Yana-Koroliuk/databases-course-work/assets/59470968/7dc3173a-d7ed-4fd5-bc2d-df074a3ab31f)
+![Реляційна схема](https://github.com/Yana-Koroliuk/databases-course-work/assets/59470968/3a67e49c-161e-4e5c-932e-b6ffb0eb658a)
