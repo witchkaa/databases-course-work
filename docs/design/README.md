@@ -118,7 +118,6 @@ entity Collaborator {
 entity Action {
     id: NUMBER
     datetime: DATETIME
-    description: TEXT
 }
 
 entity Project {
@@ -143,7 +142,6 @@ enum Role <<ENUMERATION>> #f7f711 {
 entity Permission {
     id: NUMBER
     action: TEXT
-    description: TEXT
 }
 
 entity Grant {
@@ -172,7 +170,7 @@ entity Task {
     deadline: DATETIME
 }
 
-enum Tag <<ENUMERATION>> #f7f711 {
+enum Tag {
     id: NUMBER
     name: TEXT
     description: TEXT
@@ -195,16 +193,6 @@ entity Sprint {
     startdate: DATE
     enddate: DATE
 }
-
-object done
-object in_progress
-object todo
-object in_review
-
-todo .d.> Tag :instanceOf
-in_progress .d.> Tag :instanceOf
-done .d.> Tag :instanceOf
-in_review .d.> Tag :instanceOf
 }
 
 Action "0,*" -r-> "0,1" Collaborator
