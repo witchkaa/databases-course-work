@@ -221,4 +221,4 @@ Sprint "0,*" -d-> "1,1" Project
 
 ## Реляційна схема
 
-![Реляційна схема](https://github.com/Yana-Koroliuk/databases-course-work/assets/59470968/646c4419-5bbc-440a-8998-324eb3afb0aa)
+![Реляційна схема](https://github.com/Yana-Koroliuk/databases-course-work/assets/59470968/9d5df165-067f-4f71-964a-47c2e14893e7)
