@@ -339,20 +339,74 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Початок транзакції
 START TRANSACTION;
 
--- Додавання даних в таблицю `db_coursework`.`Role`
-INSERT INTO `db_coursework`.`Role` (`name`, `description`)
-VALUES
-    ('Admin', 'Administrator role'),
-    ('Manager', 'Manager role'),
-    ('Developer', 'Developer role');
-
 -- Додавання даних в таблицю `db_coursework`.`Permission`
 INSERT INTO `db_coursework`.`Permission` (`action`)
 VALUES
-    ('Read'),
-    ('Write'),
-    ('Delete');
+    -- collaborator
+    ('EditUser'),
+    ('CreateTask'),
+    ('EditTask'),
+    ('DeleteTask'),
+    ('FilterTask'),
+    ('CommentTask'),
+    -- teamlead
+    ('CreateProject'),
+    ('DeleteProject'),
+    ('CreateSprint'),
+    ('FinishSprint'),
+    ('AddMember'),
+    ('DeleteMember'),
+    -- admin
+    ('UserSupport'),
+    ('BanUser'),
+    ('UnBanUser');
 
+
+-- Додавання даних в таблицю `db_coursework`.`Role`
+INSERT INTO `db_coursework`.`Role` (`name`, `description`)
+VALUES
+    ('Administrator', 'Administrator role'),
+    ('Team-lead', 'Team-lead role'),
+    ('Collaborator', 'Developer role');
+
+-- Додавання даних в таблицю `db_coursework`.`Grant`
+INSERT INTO `db_coursework`.`Grant` (`Role_id`, `Permission_id`)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7),
+    (1, 8),
+    (1, 9),
+    (1, 10),
+    (1, 11),
+    (1, 12),
+    (1, 13),
+    (1, 14),
+    (1, 15),
+
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4),
+    (2, 5),
+    (2, 6),
+    (2, 7),
+    (2, 8),
+    (2, 9),
+    (2, 10),
+    (2, 11),
+    (2, 12),
+
+    (3, 1),
+    (3, 2),
+    (3, 3),
+    (3, 4),
+    (3, 5),
+    (3, 6);
 
 
 -- Додавання даних в таблицю `db_coursework`.`Project`
