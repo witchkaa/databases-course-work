@@ -462,3 +462,566 @@ COMMIT;
 
 ## RESTfull сервіс для управління даними
 
+### Діаграма класів
+![Діаграма класів](img/class-diagram.png)
+
+### DualloApplication.java (файл запуску)
+```java
+package com.duallo.app.rest;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DualloApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DualloApplication.class, args);
+	}
+
+}
+```
+### Repositories
+#### LabelRepository.java
+```java
+package com.duallo.app.rest.repo;
+
+import com.duallo.app.rest.model.Label;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface LabelRepository extends JpaRepository<Label, Long> {
+    List<Label> findByTaskID(Long taskID);
+    List<Label> findByTagID(Long tagID);
+    Optional<Label> findByTaskIDAndTagID(Long taskID, long tagID);
+}
+```
+#### TagRepository.java
+```java
+package com.duallo.app.rest.repo;
+
+import com.duallo.app.rest.model.Tag;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TagRepository extends JpaRepository<Tag, Long> {
+}
+```
+#### TaskRepository.java
+```java
+package com.duallo.app.rest.repo;
+
+import com.duallo.app.rest.model.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TaskRepository extends JpaRepository<Task, Long> {
+}
+```
+
+### Models
+#### Label.java
+```java
+package com.duallo.app.rest.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table
+public class Label {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private Long taskID;
+    @Column
+    private Long tagID;
+
+    @Override
+    public String toString() {
+        return "Label{" +
+                "id=" + id +
+                ", taskID=" + taskID +
+                ", tagID=" + tagID +
+                '}';
+    }
+}
+```
+#### Tag.java
+```java
+package com.duallo.app.rest.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table
+public class Tag {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String name;
+    @Column
+    private String description;
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+}
+```
+#### Task.java
+```java
+package com.duallo.app.rest.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String name;
+    @Column
+    private String description;
+    @Column
+    private LocalDateTime deadline;
+    @Column
+    private LocalDateTime creationDate;
+    @Column
+    private Long sprintID;
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", deadline=" + deadline +
+                ", creationDate=" + creationDate +
+                ", sprintID=" + sprintID +
+                '}';
+    }
+}
+```
+### Controllers
+#### LabelController.java
+```java
+package com.duallo.app.rest.controller;
+
+import com.duallo.app.rest.model.Label;
+import com.duallo.app.rest.service.LabelService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/duallo/labels")
+public class LabelController {
+    @Autowired
+    private LabelService labelService;
+    @GetMapping(value="/get")
+    public List<Label> getLabels() {
+        return labelService.getLabels();
+    }
+    @GetMapping(value="/label{id}")
+    public ResponseEntity<Label> getLabelByID(@PathVariable long id) {
+        Label label = labelService.getLabel(id);
+        if(label != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(label);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+    @GetMapping(value = "/task{id}")
+    public ResponseEntity<List<Label>> getLabelsByTask(@PathVariable long id) {
+        List<Label> labels = labelService.getLabelByTask(id);
+        if(labels != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(labels);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+    @GetMapping(value = "/tag{id}")
+    public ResponseEntity<List<Label>> getLabelsByTag(@PathVariable long id) {
+        List<Label> labels = labelService.getLabelByTag(id);
+        if(labels != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(labels);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+    @GetMapping(value = "/tag{tagID}/task{taskID}")
+    public ResponseEntity<Label> getLabelByTagAndTask(@PathVariable long taskID, @PathVariable long tagID) {
+        Label label = labelService.getLabelByTagAndTask(taskID, tagID);
+        if(label != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(label);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+    @PostMapping(value = "/addlabel")
+    public ResponseEntity<String> addLabel(@RequestBody Label label) {
+        Label labelSaved = labelService.saveLabel(label);
+        if(labelSaved != null) {
+            return new ResponseEntity<>("Label has been saved successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Could not save the label", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PatchMapping(value="/label{id}")
+    public ResponseEntity<String> updateLabel(@PathVariable long id, @RequestBody Label label) {
+        Label updatedLabel = labelService.updateLabel(id, label);
+        if(updatedLabel != null) {
+            return ResponseEntity.status(HttpStatus.OK).body("Label has been edited successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Label not found.");
+        }
+    }
+    @DeleteMapping(value="/label{id}")
+    public ResponseEntity<String> deleteLabel(@PathVariable long id) {
+        Boolean isDel = labelService.deleteLabel(id);
+        if (isDel) {
+            return ResponseEntity.status(HttpStatus.OK).body("Label has been deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Label not found.");
+        }
+    }
+}
+```
+#### TagController.java
+```java
+package com.duallo.app.rest.controller;
+
+import com.duallo.app.rest.model.Tag;
+import com.duallo.app.rest.service.TagService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/duallo/tags")
+public class TagController {
+    @Autowired
+    private TagService tagService;
+    @GetMapping(value="/get")
+    public List<Tag> getTags() {
+        return tagService.getTags();
+    }
+    @GetMapping(value="/tag{id}")
+    public ResponseEntity<Tag> getTagByID(@PathVariable long id) {
+        Tag tag =  tagService.getTag(id);
+        if(tag != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(tag);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+    @PostMapping(value = "/addtag")
+    public ResponseEntity<String> addTag(@RequestBody Tag tag) {
+        Tag tagSaved = tagService.saveTag(tag);
+        if(tagSaved != null) {
+            return new ResponseEntity<>("Tag has been saved successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Could not save the tag", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PatchMapping(value="/tag{id}")
+    public ResponseEntity<String> updateTag(@PathVariable long id, @RequestBody(required = false) Tag tag) {
+        Tag updatedTag = tagService.updateTag(id, tag);
+        if (updatedTag != null) {
+            return ResponseEntity.status(HttpStatus.OK).body("Tag has been edited successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tag not found");
+        }
+    }
+    @DeleteMapping(value="/tag{id}")
+    public ResponseEntity<String> deleteTag(@PathVariable long id) {
+        Boolean isDel = tagService.deleteTag(id);
+        if(isDel) {
+            return ResponseEntity.status(HttpStatus.OK).body("Tag has been deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tag not found.");
+        }
+    }
+
+}
+```
+#### TaskController.java
+```java
+package com.duallo.app.rest.controller;
+
+import com.duallo.app.rest.model.Task;
+import com.duallo.app.rest.service.TaskService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/duallo/tasks")
+public class TaskController {
+    @Autowired
+    private TaskService taskService;
+    @GetMapping(value="task{id}")
+    public ResponseEntity<Task> getTaskByID(@PathVariable long id) {
+        Task task = taskService.getTask(id);
+        if(task != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(task);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+    @GetMapping(value="/get")
+    public List<Task> getTasks() {
+        return taskService.getTasks();
+    }
+    @PostMapping(value = "/addtask")
+    public ResponseEntity<String> addTask(@RequestBody Task task) {
+        Task taskSaved = taskService.saveTask(task);
+        if(taskSaved != null) {
+            return new ResponseEntity<>("Task has been saved successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Could not save the task", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PatchMapping(value="/task{id}")
+    public ResponseEntity<String> updateTask(@PathVariable long id, @RequestBody Task task) {
+        Task updatedTask = taskService.updateTask(id, task);
+        if(updatedTask != null) {
+            return ResponseEntity.status(HttpStatus.OK).body("Task has been edited successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Task not found.");
+        }
+    }
+    @DeleteMapping(value="/task{id}")
+    public ResponseEntity<String> deleteTask(@PathVariable long id) {
+        Boolean isDel = taskService.deleteTask(id);
+        if(isDel) {
+            return ResponseEntity.status(HttpStatus.OK).body("Task has been deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Task not found.");
+        }
+    }
+}
+```
+### Services
+#### LabelService.java 
+```java
+package com.duallo.app.rest.service;
+
+import com.duallo.app.rest.model.Label;
+import com.duallo.app.rest.repo.LabelRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class LabelService {
+    @Autowired
+    private LabelRepository labelRepo;
+    public List<Label> getLabelByTask(long id) {
+        return labelRepo.findByTaskID(id);
+    }
+    public List<Label> getLabelByTag(long id) {
+        return labelRepo.findByTagID(id);
+    }
+    public Label getLabelByTagAndTask(long taskID, long tagID) {
+        return labelRepo.findByTaskIDAndTagID(taskID, tagID).orElse(null);
+    }
+    public List<Label> getLabels() {
+        return labelRepo.findAll();
+    }
+    public Label getLabel(long id) {
+        return labelRepo.findById(id).orElse(null);
+    }
+    public Label saveLabel(Label label) {
+        Label labelSaved = new Label();
+        BeanUtils.copyProperties(label, labelSaved);
+        return labelRepo.save(labelSaved);
+    }
+    public Label updateLabel(long id, Label label) {
+        Label updatedLabel = labelRepo.findById(id).orElse(null);
+        if(updatedLabel != null) {
+            if(label.getTagID() != null) {
+                updatedLabel.setTagID(label.getTagID());
+            }
+            if(label.getTaskID() != null) {
+                updatedLabel.setTaskID(label.getTaskID());
+            }
+            return labelRepo.save(updatedLabel);
+        } else {
+            return null;
+        }
+    }
+    public Boolean deleteLabel(long id) {
+        Label deleteLabel = labelRepo.findById(id).orElse(null);
+        if (deleteLabel != null) {
+            labelRepo.delete(deleteLabel);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+```
+#### TagService.java
+```java
+package com.duallo.app.rest.service;
+
+import com.duallo.app.rest.model.Tag;
+import com.duallo.app.rest.model.Task;
+import com.duallo.app.rest.repo.TagRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+
+@Service
+public class TagService {
+    @Autowired
+    private TagRepository tagRepo;
+    public List<Tag> getTags() {
+        return tagRepo.findAll();
+    }
+    public Tag getTag(long id) {
+        return tagRepo.findById(id).orElse(null);
+    }
+    public Tag saveTag(Tag tag) {
+        Tag tagSaved = new Tag();
+        BeanUtils.copyProperties(tag, tagSaved);
+        return tagRepo.save(tag);
+    }
+    public Tag updateTag(long id, Tag tag) {
+        Tag updatedTag = tagRepo.findById(id).orElse(null);
+        if (updatedTag != null) {
+            if (tag.getName() != null) {
+                updatedTag.setName(tag.getName());
+            }
+            if (tag.getDescription() != null) {
+                updatedTag.setDescription(tag.getDescription());
+            }
+            return tagRepo.save(updatedTag);
+        } else {
+            return null;
+        }
+    }
+    public Boolean deleteTag(long id) {
+        Tag deleteTag = tagRepo.findById(id).orElse(null);
+        if(deleteTag != null) {
+            tagRepo.delete(deleteTag);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+```
+#### TaskService.java
+```java
+package com.duallo.app.rest.service;
+
+import com.duallo.app.rest.model.Task;
+import com.duallo.app.rest.repo.TaskRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TaskService {
+    @Autowired
+    TaskRepository taskRepo;
+    public Task saveTask(Task task) {
+        Task taskSaved = new Task();
+        BeanUtils.copyProperties(task, taskSaved);
+        return taskRepo.save(taskSaved);
+    }
+    public Task getTask(Long id) {
+        return taskRepo.findById(id).orElse(null);
+    }
+    public List<Task> getTasks() {
+        return taskRepo.findAll();
+    }
+    public Task updateTask(long id, Task task) {
+        Task updatedTask = taskRepo.findById(id).orElse(null);
+        if (updatedTask != null) {
+            if (task.getName() != null) {
+                updatedTask.setName(task.getName());
+            }
+            if (task.getDescription() != null) {
+                updatedTask.setDescription(task.getDescription());
+            }
+            if (task.getDeadline() != null) {
+                updatedTask.setDeadline(task.getDeadline());
+            }
+            if (task.getCreationDate() != null) {
+                updatedTask.setCreationDate(task.getCreationDate());
+            }
+            if (task.getSprintID() != null) {
+                updatedTask.setSprintID(task.getSprintID());
+            }
+            return taskRepo.save(updatedTask);
+        } else {
+            return null;
+        }
+    }
+    public Boolean deleteTask(long id) {
+        Task deleteTask = taskRepo.findById(id).orElse(null);
+        if(deleteTask != null) {
+            taskRepo.delete(deleteTask);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+```
