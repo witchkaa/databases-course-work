@@ -3,21 +3,13 @@ home: true
 actionText: Розпочати →
 actionLink: /intro/
 
-footer: "ECL 2.0 Licensed | Copyright © 2023 Королюк"
+footer: "ECL 2.0 Licensed | Copyright © 2023 Сабадан"
 ---
 
 
-**Виконав(-ла):** 
+**Виконала:**
 
-*студент 2-го курсу, групи ІМ-22*<span padding-right:5em></span> **Михайло БАЛАХОН** [Пошта: 9mohapx9@gmail.com, <a href="https://t.me/mibal_ua">Телеграм</a>]
-
-*студент 2-го курсу, групи ІМ-22*<span padding-right:5em></span> **Олександр БОНДАРЕНКО** [Пошта: albom2004q@gmail.com, <a href="https://t.me/Dreammy_Oleksandr">Телеграм</a>]
-
-*студент 2-го курсу, групи ІМ-22*<span padding-right:5em></span> **Яна КОРОЛЮК** [Пошта: yana.koroliuk1@gmail.com, <a href="https://t.me/Koroliuk_Yana">Телеграм</a>]
-
-*студент 2-го курсу, групи ІМ-22*<span padding-right:5em></span> **Михайло КОВАЛЕНКО** [Пошта: kovalenko10102004@gmail.com, <a href="https://t.me/merrymike">Телеграм</a>]
-
-*студент 2-го курсу, групи ІМ-22*<span padding-right:5em></span> **Вікторія САБАДАН** [Пошта: victoriasabadan1@gmail.com, <a href="https://t.me/witchkaa">Телеграм</a>]
+*студентка 2-го курсу, групи ІМ-22*<span padding-right:5em></span> **Вікторія САБАДАН** [Пошта: victoriasabadan1@gmail.com, <a href="https://t.me/witchkaa">Телеграм</a>]
 
 
 **Керівник**
