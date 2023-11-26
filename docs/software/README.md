@@ -463,7 +463,9 @@ COMMIT;
 ## RESTfull сервіс для управління даними
 
 ### Діаграма класів
-![Діаграма класів](img/class-diagram.png)
+<p>
+    <img src="./img/class-diagram.png">
+</p>
 
 ### DualloApplication.java (файл запуску)
 ```java
