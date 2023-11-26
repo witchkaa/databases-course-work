@@ -6,7 +6,7 @@
 ## Початкове наповнення БД
 ![Початкове наповнення БД](img/start_task.png)
 ## Додати Task
-![Додати Task](img/post_task1.png)
+![Додати Task](https://github.com/witchkaa/databases-course-work/blob/master/docs/test/img/post_task1.png)
 ## Отримати усі Task
 ![Отримати усі Task](img/get_tasks2.png)
 ## Відредагувати Task
