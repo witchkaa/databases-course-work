@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Реалізація інформаційного та програмного забезпечення | 4. Система управління проектами</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/databases-course-work/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Лабораторні роботи з дисципліни &quot;Організація баз даних&quot;">
+    
+    <link rel="preload" href="/databases-course-work/assets/css/0.styles.2c8ae7de.css" as="style"><link rel="preload" href="/databases-course-work/assets/js/app.4ae8db41.js" as="script"><link rel="preload" href="/databases-course-work/assets/js/2.d5928b1d.js" as="script"><link rel="preload" href="/databases-course-work/assets/js/1.82977ebd.js" as="script"><link rel="preload" href="/databases-course-work/assets/js/29.764689b0.js" as="script"><link rel="prefetch" href="/databases-course-work/assets/js/10.0e2bde6e.js"><link rel="prefetch" href="/databases-course-work/assets/js/13.bec707ea.js"><link rel="prefetch" href="/databases-course-work/assets/js/14.18a30b26.js"><link rel="prefetch" href="/databases-course-work/assets/js/15.bb968e71.js"><link rel="prefetch" href="/databases-course-work/assets/js/16.82ba8eda.js"><link rel="prefetch" href="/databases-course-work/assets/js/17.9b4f3a35.js"><link rel="prefetch" href="/databases-course-work/assets/js/18.0471f176.js"><link rel="prefetch" href="/databases-course-work/assets/js/19.198c0008.js"><link rel="prefetch" href="/databases-course-work/assets/js/20.959394f2.js"><link rel="prefetch" href="/databases-course-work/assets/js/21.b7b37969.js"><link rel="prefetch" href="/databases-course-work/assets/js/22.841917c8.js"><link rel="prefetch" href="/databases-course-work/assets/js/23.3100b240.js"><link rel="prefetch" href="/databases-course-work/assets/js/24.0c5bd04a.js"><link rel="prefetch" href="/databases-course-work/assets/js/25.9127e45f.js"><link rel="prefetch" href="/databases-course-work/assets/js/26.4d0f1ed0.js"><link rel="prefetch" href="/databases-course-work/assets/js/27.7a36d913.js"><link rel="prefetch" href="/databases-course-work/assets/js/28.c49578a2.js"><link rel="prefetch" href="/databases-course-work/assets/js/3.45105e67.js"><link rel="prefetch" href="/databases-course-work/assets/js/30.9d251781.js"><link rel="prefetch" href="/databases-course-work/assets/js/31.80ebaadd.js"><link rel="prefetch" href="/databases-course-work/assets/js/32.ced2f50a.js"><link rel="prefetch" href="/databases-course-work/assets/js/33.d6c72e2e.js"><link rel="prefetch" href="/databases-course-work/assets/js/34.c73ff1dd.js"><link rel="prefetch" href="/databases-course-work/assets/js/35.fc8a3180.js"><link rel="prefetch" href="/databases-course-work/assets/js/36.e705861f.js"><link rel="prefetch" href="/databases-course-work/assets/js/37.44664c8f.js"><link rel="prefetch" href="/databases-course-work/assets/js/38.10ab0829.js"><link rel="prefetch" href="/databases-course-work/assets/js/39.11ce89b0.js"><link rel="prefetch" href="/databases-course-work/assets/js/4.ff2cd110.js"><link rel="prefetch" href="/databases-course-work/assets/js/40.39cd4dfc.js"><link rel="prefetch" href="/databases-course-work/assets/js/41.8122f54c.js"><link rel="prefetch" href="/databases-course-work/assets/js/5.ed988792.js"><link rel="prefetch" href="/databases-course-work/assets/js/6.cf7fc076.js"><link rel="prefetch" href="/databases-course-work/assets/js/7.98446471.js"><link rel="prefetch" href="/databases-course-work/assets/js/8.f987943d.js"><link rel="prefetch" href="/databases-course-work/assets/js/9.26686630.js"><link rel="prefetch" href="/databases-course-work/assets/js/vendors~docsearch.dfe73048.js">
+    <link rel="stylesheet" href="/databases-course-work/assets/css/0.styles.2c8ae7de.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/databases-course-work/" class="home-link router-link-active"><!----> <span class="site-name">4. Система управління проектами</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/databases-course-work/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/Yana-Koroliuk/databases-course-work" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/databases-course-work/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/Yana-Koroliuk/databases-course-work" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/databases-course-work/intro/" class="sidebar-link">Вступ</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/databases-course-work/requirements/" class="sidebar-heading clickable"><span>Розроблення загальних вимог до системи</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/databases-course-work/use%20cases/" class="sidebar-link">Розроблення вимог до функціональности системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#загальна-схема" class="sidebar-link">Загальна схема</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#робітник" class="sidebar-link">Робітник</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#тімлід" class="sidebar-link">Тімлід</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#адміністратор-системи" class="sidebar-link">Адміністратор системи</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#сценаріі-використання" class="sidebar-link">Сценарії використання</a></li></ul></li><li><a href="/databases-course-work/design/" class="sidebar-link">Проектування інформаційного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/design/#модель-бізнес-об-єктів" class="sidebar-link">Модель бізнес-об'єктів</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/design/#er-модель" class="sidebar-link">ER-модель</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/design/#реляціина-схема" class="sidebar-link">Реляційна схема</a></li></ul></li><li><a href="/databases-course-work/software/" aria-current="page" class="active sidebar-link">Реалізація інформаційного та програмного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/software/#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="sidebar-link">SQL-скрипт для створення на початкового наповнення бази даних</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#restfull-сервіс-для-управління-даними" class="sidebar-link">RESTfull сервіс для управління даними</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/software/#діаграма-класів" class="sidebar-link">Діаграма класів</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#dualloapplication-java-фаил-запуску" class="sidebar-link">DualloApplication.java (файл запуску)</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#repositories" class="sidebar-link">Repositories</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#models" class="sidebar-link">Models</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#controllers" class="sidebar-link">Controllers</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#services" class="sidebar-link">Services</a></li></ul></li></ul></li><li><a href="/databases-course-work/test/" class="sidebar-link">Тестування працездатності системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/test/#початкове-наповнення-бд" class="sidebar-link">Початкове наповнення БД</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#додати-task" class="sidebar-link">Додати Task</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-усі-task" class="sidebar-link">Отримати усі Task</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#відредагувати-task" class="sidebar-link">Відредагувати Task</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-task-за-id" class="sidebar-link">Отримати Task за ID</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#видалити-task" class="sidebar-link">Видалити Task</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#після-видалення-task-з-id-4-більше-нема-у-таблиці" class="sidebar-link">Після видалення Task з ID 4 більше нема у таблиці</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#початкове-наповнення-бд-2" class="sidebar-link">Початкове наповнення БД</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#додати-tag" class="sidebar-link">Додати Tag</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-усі-tag" class="sidebar-link">Отримати усі Tag</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-tag-за-id" class="sidebar-link">Отримати Tag за ID</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#відредагувати-tag" class="sidebar-link">Відредагувати Tag</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримаємо-щоино-відредаговании-tag" class="sidebar-link">Отримаємо щойно відредагований Tag</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#видалити-tag" class="sidebar-link">Видалити Tag</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#після-видалення-тегу-з-id-3-більше-немає" class="sidebar-link">Після видалення тегу з ID 3 більше немає</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#початкове-наповнення-бд-3" class="sidebar-link">Початкове наповнення БД</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#додати-label" class="sidebar-link">Додати Label</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-всі-label" class="sidebar-link">Отримати всі Label</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-усі-label-за-task-id" class="sidebar-link">Отримати усі Label за Task_ID</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-усі-label-за-tag-id" class="sidebar-link">Отримати усі Label за Tag_ID</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#отримати-label-за-task-id-та-tag-id" class="sidebar-link">Отримати Label за TaskID та TagID</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#відредагувати-label" class="sidebar-link">Відредагувати Label</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#видалити-label" class="sidebar-link">Видалити Label</a></li></ul></li><li><a href="/databases-course-work/conclusion/" class="sidebar-link">Висновки</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="реалізація-інформаціиного-та-програмного-забезпечення"><a href="#реалізація-інформаціиного-та-програмного-забезпечення" class="header-anchor">#</a> Реалізація інформаційного та програмного забезпечення</h1> <h2 id="sql-скрипт-для-створення-на-початкового-наповнення-бази-даних"><a href="#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="header-anchor">#</a> SQL-скрипт для створення на початкового наповнення бази даних</h2> <div class="language-mysql extra-class"><pre class="language-text"><code>-- MySQL Script generated by MySQL Workbench
+-- Fri Oct 20 09:55:08 2023
+-- Model: New Model    Version: 1.0
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema db_coursework
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `db_coursework` ;
+
+-- -----------------------------------------------------
+-- Schema db_coursework
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `db_coursework` DEFAULT CHARACTER SET utf8 ;
+
+USE `db_coursework` ;
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Role` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Role` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(180) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Permission`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Permission` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Permission` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `action` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Project`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Project` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Project` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(180) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Team`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Team` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Team` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(100) NULL,
+  `motto` VARCHAR(255) NULL,
+  `Project_id` INT NOT NULL,
+  INDEX `fk_Team_Project1_idx` (`Project_id` ASC) VISIBLE,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_Team_Project1`
+    FOREIGN KEY (`Project_id`)
+    REFERENCES `db_coursework`.`Project` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`User`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`User` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`User` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nickname` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `photo` VARCHAR(255) NULL DEFAULT NULL,
+  `is_banned` TINYINT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Collaborator`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Collaborator` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Collaborator` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Role_id` INT NOT NULL,
+  `User_id` INT NOT NULL,
+  `Team_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Member_Role1_idx` (`Role_id` ASC) VISIBLE,
+  INDEX `fk_Member_User1_idx` (`User_id` ASC) VISIBLE,
+  INDEX `fk_Collaborator_Team1_idx` (`Team_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Member_Role1`
+    FOREIGN KEY (`Role_id`)
+    REFERENCES `db_coursework`.`Role` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Member_User1`
+    FOREIGN KEY (`User_id`)
+    REFERENCES `db_coursework`.`User` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Collaborator_Team1`
+    FOREIGN KEY (`Team_id`)
+    REFERENCES `db_coursework`.`Team` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Sprint`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Sprint` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Sprint` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `goal` VARCHAR(100) NOT NULL,
+  `startdate` DATETIME NULL DEFAULT NULL,
+  `enddate` DATETIME NULL DEFAULT NULL,
+  `Project_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Sprint_Project1_idx` (`Project_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Sprint_Project1`
+    FOREIGN KEY (`Project_id`)
+    REFERENCES `db_coursework`.`Project` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Tag` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Tag` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(180) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Task`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Task` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Task` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(180) NULL DEFAULT NULL,
+  `deadline` DATETIME NULL DEFAULT NULL,
+  `creation_date` DATETIME NOT NULL,
+  `Sprint_id` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Task_Sprint1_idx` (`Sprint_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Task_Sprint1`
+    FOREIGN KEY (`Sprint_id`)
+    REFERENCES `db_coursework`.`Sprint` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Assignment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Assignment` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Assignment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `datatime` DATETIME NULL DEFAULT NULL,
+  `Collaborator_id` INT NOT NULL,
+  `Task_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Assignment_Member1_idx` (`Collaborator_id` ASC) VISIBLE,
+  INDEX `fk_Assignment_Task1_idx` (`Task_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Assignment_Member1`
+    FOREIGN KEY (`Collaborator_id`)
+    REFERENCES `db_coursework`.`Collaborator` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Assignment_Task1`
+    FOREIGN KEY (`Task_id`)
+    REFERENCES `db_coursework`.`Task` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Task_comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Task_comment` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Task_comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `subject` VARCHAR(45) NOT NULL,
+  `text` VARCHAR(45) NOT NULL,
+  `datetime` DATETIME NULL DEFAULT NULL,
+  `Author_id` INT NOT NULL,
+  `Task_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Task_comment_Member1_idx` (`Author_id` ASC) VISIBLE,
+  INDEX `fk_Task_comment_Task1_idx` (`Task_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Task_comment_Member1`
+    FOREIGN KEY (`Author_id`)
+    REFERENCES `db_coursework`.`Collaborator` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_comment_Task1`
+    FOREIGN KEY (`Task_id`)
+    REFERENCES `db_coursework`.`Task` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Grant`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Grant` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Grant` (
+  `Role_id` INT NOT NULL,
+  `Permission_id` INT NOT NULL,
+  INDEX `fk_Grant_Role_idx` (`Role_id` ASC) VISIBLE,
+  PRIMARY KEY (`Role_id`, `Permission_id`),
+  INDEX `fk_Grant_Permission2_idx` (`Permission_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Grant_Role0`
+    FOREIGN KEY (`Role_id`)
+    REFERENCES `db_coursework`.`Role` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Grant_Permission2`
+    FOREIGN KEY (`Permission_id`)
+    REFERENCES `db_coursework`.`Permission` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Label`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Label` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Label` (
+  `Task_id` INT NOT NULL,
+  `Tag_id` INT NOT NULL,
+  PRIMARY KEY (`Task_id`, `Tag_id`),
+  INDEX `fk_Label_Tag1_idx` (`Tag_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Label_Task1`
+    FOREIGN KEY (`Task_id`)
+    REFERENCES `db_coursework`.`Task` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Label_Tag1`
+    FOREIGN KEY (`Tag_id`)
+    REFERENCES `db_coursework`.`Tag` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_coursework`.`Action`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_coursework`.`Action` ;
+
+CREATE TABLE IF NOT EXISTS `db_coursework`.`Action` (
+  `date` DATETIME NULL DEFAULT NULL,
+  `Sprint_id` INT NOT NULL,
+  `Task_id` INT NOT NULL,
+  `Assignment_id` INT NOT NULL,
+  `Collaborator_id` INT NOT NULL,
+  PRIMARY KEY (`Sprint_id`, `Task_id`, `Assignment_id`, `Collaborator_id`),
+  INDEX `fk_Action_Task1_idx` (`Task_id` ASC) VISIBLE,
+  INDEX `fk_Action_Assignment1_idx` (`Assignment_id` ASC) VISIBLE,
+  INDEX `fk_Action_Collaborator1_idx` (`Collaborator_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Action_Sprint1`
+    FOREIGN KEY (`Sprint_id`)
+    REFERENCES `db_coursework`.`Sprint` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Action_Task1`
+    FOREIGN KEY (`Task_id`)
+    REFERENCES `db_coursework`.`Task` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Action_Assignment1`
+    FOREIGN KEY (`Assignment_id`)
+    REFERENCES `db_coursework`.`Assignment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Action_Collaborator1`
+    FOREIGN KEY (`Collaborator_id`)
+    REFERENCES `db_coursework`.`Collaborator` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- Додавання тестових даних
+
+
+
+
+-- Початок транзакції
+START TRANSACTION;
+
+-- Додавання даних в таблицю `db_coursework`.`Permission`
+INSERT INTO `db_coursework`.`Permission` (`action`)
+VALUES
+    -- collaborator
+    ('EditUser'),
+    ('CreateTask'),
+    ('EditTask'),
+    ('DeleteTask'),
+    ('FilterTask'),
+    ('CommentTask'),
+    -- teamlead
+    ('CreateProject'),
+    ('DeleteProject'),
+    ('CreateSprint'),
+    ('FinishSprint'),
+    ('AddMember'),
+    ('DeleteMember'),
+    -- admin
+    ('UserSupport'),
+    ('BanUser'),
+    ('UnBanUser');
+
+
+-- Додавання даних в таблицю `db_coursework`.`Role`
+INSERT INTO `db_coursework`.`Role` (`name`, `description`)
+VALUES
+    ('Administrator', 'Administrator role'),
+    ('Team-lead', 'Team-lead role'),
+    ('Collaborator', 'Developer role');
+
+-- Додавання даних в таблицю `db_coursework`.`Grant`
+INSERT INTO `db_coursework`.`Grant` (`Role_id`, `Permission_id`)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7),
+    (1, 8),
+    (1, 9),
+    (1, 10),
+    (1, 11),
+    (1, 12),
+    (1, 13),
+    (1, 14),
+    (1, 15),
+
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4),
+    (2, 5),
+    (2, 6),
+    (2, 7),
+    (2, 8),
+    (2, 9),
+    (2, 10),
+    (2, 11),
+    (2, 12),
+
+    (3, 1),
+    (3, 2),
+    (3, 3),
+    (3, 4),
+    (3, 5),
+    (3, 6);
+
+
+-- Додавання даних в таблицю `db_coursework`.`Project`
+INSERT INTO `db_coursework`.`Project` (`name`, `description`)
+VALUES
+    ('Project 1', 'Description for Project 1'),
+    ('Project 2', 'Description for Project 2');
+
+-- Додавання даних в таблицю `db_coursework`.`Team`
+INSERT INTO `db_coursework`.`Team` (`id`, `name`, `motto`, `Project_id`)
+VALUES
+    (1, 'Team 1', 'Motto for Team 1', 1),
+    (2, 'Team 2', 'Motto for Team 2', 2);
+
+-- Додавання даних в таблицю `db_coursework`.`User`
+INSERT INTO `db_coursework`.`User` (`nickname`, `email`, `password`, `photo`, `is_banned`)
+VALUES
+    ('User1', 'user1@example.com', 'password1', 'link.com/photo', 0),
+    ('User2', 'user2@example.com', 'password2', 'link.com/photo', 0);
+
+-- Додавання даних в таблицю `db_coursework`.`Collaborator`
+INSERT INTO `db_coursework`.`Collaborator` (`Role_id`, `User_id`, `Team_id`)
+VALUES
+    (1, 1, 1),  -- Admin User 1 in Team 1
+    (2, 2, 2);  -- Manager User 2 in Team 2
+
+-- Додавання тестових даних в таблицю `db_coursework.Sprint`
+INSERT INTO `db_coursework`.`Sprint` (`name`, `goal`, `startdate`, `enddate`, `Project_id`)
+VALUES
+    ('Sprint 1', 'Complete Task 1', '2023-10-18 10:00:00', '2023-10-22 18:00:00', 1),
+    ('Sprint 2', 'Finish Project 2', '2023-10-25 09:00:00', '2023-10-29 17:00:00', 2),
+    ('Sprint 3', 'Implement Feature 3', '2023-11-01 08:00:00', '2023-11-05 16:00:00', 1);
+
+
+-- Додавання даних в таблицю `db_coursework`.`Task`
+INSERT INTO `db_coursework`.`Task` (`name`, `description`, `deadline`, `creation_date`, `Sprint_id`)
+VALUES
+    ('Task 1', 'Description for Task 1', '2023-10-31 12:00:00', NOW(), 1),
+    ('Task 2', 'Description for Task 2', '2023-11-15 14:30:00', NOW(), 2),
+    ('Task 3', 'Description for Task 3', '2023-11-20 10:00:00', NOW(), 3);
+
+-- Додавання тестових даних в таблицю `db_coursework.Assignment`
+INSERT INTO `db_coursework`.`Assignment` (`datatime`, `Collaborator_id`, `Task_id`)
+VALUES
+    ('2023-10-18 11:30:00', 1, 1),
+    ('2023-10-19 14:15:00', 2, 2),
+    ('2023-10-20 09:45:00', 1, 3);
+
+
+COMMIT;
+
+</code></pre></div><h2 id="restfull-сервіс-для-управління-даними"><a href="#restfull-сервіс-для-управління-даними" class="header-anchor">#</a> RESTfull сервіс для управління даними</h2> <h3 id="діаграма-класів"><a href="#діаграма-класів" class="header-anchor">#</a> Діаграма класів</h3> <p><img src="/databases-course-work/assets/img/class-diagram.c1d7f2ad.png"></p> <h3 id="dualloapplication-java-фаил-запуску"><a href="#dualloapplication-java-фаил-запуску" class="header-anchor">#</a> DualloApplication.java (файл запуску)</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">SpringApplication</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span></span><span class="token class-name">SpringBootApplication</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DualloApplication</span> <span class="token punctuation">{</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">DualloApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="repositories"><a href="#repositories" class="header-anchor">#</a> Repositories</h3> <h4 id="labelrepository-java"><a href="#labelrepository-java" class="header-anchor">#</a> LabelRepository.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>repo</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Label</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>jpa<span class="token punctuation">.</span>repository<span class="token punctuation">.</span></span><span class="token class-name">JpaRepository</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Repository</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Optional</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Repository</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">LabelRepository</span> <span class="token keyword">extends</span> <span class="token class-name">JpaRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">findByTaskID</span><span class="token punctuation">(</span><span class="token class-name">Long</span> taskID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">findByTagID</span><span class="token punctuation">(</span><span class="token class-name">Long</span> tagID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">findByTaskIDAndTagID</span><span class="token punctuation">(</span><span class="token class-name">Long</span> taskID<span class="token punctuation">,</span> <span class="token keyword">long</span> tagID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="tagrepository-java"><a href="#tagrepository-java" class="header-anchor">#</a> TagRepository.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>repo</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Tag</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>jpa<span class="token punctuation">.</span>repository<span class="token punctuation">.</span></span><span class="token class-name">JpaRepository</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Repository</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Repository</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">TagRepository</span> <span class="token keyword">extends</span> <span class="token class-name">JpaRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Tag</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="taskrepository-java"><a href="#taskrepository-java" class="header-anchor">#</a> TaskRepository.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>repo</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Task</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>jpa<span class="token punctuation">.</span>repository<span class="token punctuation">.</span></span><span class="token class-name">JpaRepository</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Repository</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Repository</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">TaskRepository</span> <span class="token keyword">extends</span> <span class="token class-name">JpaRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Task</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="models"><a href="#models" class="header-anchor">#</a> Models</h3> <h4 id="label-java"><a href="#label-java" class="header-anchor">#</a> Label.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">jakarta<span class="token punctuation">.</span>persistence<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Getter</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">NoArgsConstructor</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Setter</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Entity</span>
+<span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@Setter</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@Table</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Label</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> <span class="token class-name">GenerationType</span><span class="token punctuation">.</span><span class="token constant">IDENTITY</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> taskID<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> tagID<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;Label{&quot;</span> <span class="token operator">+</span>
+                <span class="token string">&quot;id=&quot;</span> <span class="token operator">+</span> id <span class="token operator">+</span>
+                <span class="token string">&quot;, taskID=&quot;</span> <span class="token operator">+</span> taskID <span class="token operator">+</span>
+                <span class="token string">&quot;, tagID=&quot;</span> <span class="token operator">+</span> tagID <span class="token operator">+</span>
+                <span class="token char">'}'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="tag-java"><a href="#tag-java" class="header-anchor">#</a> Tag.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">jakarta<span class="token punctuation">.</span>persistence<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Getter</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">NoArgsConstructor</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Setter</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Entity</span>
+<span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@Setter</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@Table</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Tag</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> <span class="token class-name">GenerationType</span><span class="token punctuation">.</span><span class="token constant">IDENTITY</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;Tag{&quot;</span> <span class="token operator">+</span>
+                <span class="token string">&quot;id=&quot;</span> <span class="token operator">+</span> id <span class="token operator">+</span>
+                <span class="token string">&quot;, name='&quot;</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token char">'\''</span> <span class="token operator">+</span>
+                <span class="token string">&quot;, description='&quot;</span> <span class="token operator">+</span> description <span class="token operator">+</span> <span class="token char">'\''</span> <span class="token operator">+</span>
+                <span class="token char">'}'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="task-java"><a href="#task-java" class="header-anchor">#</a> Task.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">jakarta<span class="token punctuation">.</span>persistence<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Getter</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">NoArgsConstructor</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Setter</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>time<span class="token punctuation">.</span></span><span class="token class-name">LocalDateTime</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Entity</span>
+<span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@Setter</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@Table</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Task</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> <span class="token class-name">GenerationType</span><span class="token punctuation">.</span><span class="token constant">IDENTITY</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">LocalDateTime</span> deadline<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">LocalDateTime</span> creationDate<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Column</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> sprintID<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;Task{&quot;</span> <span class="token operator">+</span>
+                <span class="token string">&quot;id=&quot;</span> <span class="token operator">+</span> id <span class="token operator">+</span>
+                <span class="token string">&quot;, name='&quot;</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token char">'\''</span> <span class="token operator">+</span>
+                <span class="token string">&quot;, description='&quot;</span> <span class="token operator">+</span> description <span class="token operator">+</span> <span class="token char">'\''</span> <span class="token operator">+</span>
+                <span class="token string">&quot;, deadline=&quot;</span> <span class="token operator">+</span> deadline <span class="token operator">+</span>
+                <span class="token string">&quot;, creationDate=&quot;</span> <span class="token operator">+</span> creationDate <span class="token operator">+</span>
+                <span class="token string">&quot;, sprintID=&quot;</span> <span class="token operator">+</span> sprintID <span class="token operator">+</span>
+                <span class="token char">'}'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="controllers"><a href="#controllers" class="header-anchor">#</a> Controllers</h3> <h4 id="labelcontroller-java"><a href="#labelcontroller-java" class="header-anchor">#</a> LabelController.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>controller</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Label</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">LabelService</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpStatus</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">ResponseEntity</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/duallo/labels&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LabelController</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">LabelService</span> labelService<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/get&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabels</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> labelService<span class="token punctuation">.</span><span class="token function">getLabels</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/label{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabelByID</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Label</span> label <span class="token operator">=</span> labelService<span class="token punctuation">.</span><span class="token function">getLabel</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>label <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/task{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabelsByTask</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> labels <span class="token operator">=</span> labelService<span class="token punctuation">.</span><span class="token function">getLabelByTask</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>labels <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/tag{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabelsByTag</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> labels <span class="token operator">=</span> labelService<span class="token punctuation">.</span><span class="token function">getLabelByTag</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>labels <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/tag{tagID}/task{taskID}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabelByTagAndTask</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> taskID<span class="token punctuation">,</span> <span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> tagID<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Label</span> label <span class="token operator">=</span> labelService<span class="token punctuation">.</span><span class="token function">getLabelByTagAndTask</span><span class="token punctuation">(</span>taskID<span class="token punctuation">,</span> tagID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>label <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/addlabel&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">addLabel</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">Label</span> label<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Label</span> labelSaved <span class="token operator">=</span> labelService<span class="token punctuation">.</span><span class="token function">saveLabel</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>labelSaved <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token string">&quot;Label has been saved successfully&quot;</span><span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token string">&quot;Could not save the label&quot;</span><span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">INTERNAL_SERVER_ERROR</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@PatchMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/label{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">updateLabel</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">,</span> <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">Label</span> label<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Label</span> updatedLabel <span class="token operator">=</span> labelService<span class="token punctuation">.</span><span class="token function">updateLabel</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>updatedLabel <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Label has been edited successfully.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Label not found.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/label{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">deleteLabel</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Boolean</span> isDel <span class="token operator">=</span> labelService<span class="token punctuation">.</span><span class="token function">deleteLabel</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isDel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Label has been deleted successfully.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Label not found.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="tagcontroller-java"><a href="#tagcontroller-java" class="header-anchor">#</a> TagController.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>controller</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Tag</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">TagService</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpStatus</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">ResponseEntity</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/duallo/tags&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TagController</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">TagService</span> tagService<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/get&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Tag</span><span class="token punctuation">&gt;</span></span> <span class="token function">getTags</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> tagService<span class="token punctuation">.</span><span class="token function">getTags</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/tag{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Tag</span><span class="token punctuation">&gt;</span></span> <span class="token function">getTagByID</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Tag</span> tag <span class="token operator">=</span>  tagService<span class="token punctuation">.</span><span class="token function">getTag</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>tag <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/addtag&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">addTag</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">Tag</span> tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Tag</span> tagSaved <span class="token operator">=</span> tagService<span class="token punctuation">.</span><span class="token function">saveTag</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>tagSaved <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token string">&quot;Tag has been saved successfully&quot;</span><span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token string">&quot;Could not save the tag&quot;</span><span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">INTERNAL_SERVER_ERROR</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@PatchMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/tag{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">updateTag</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">,</span> <span class="token annotation punctuation">@RequestBody</span><span class="token punctuation">(</span>required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token class-name">Tag</span> tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Tag</span> updatedTag <span class="token operator">=</span> tagService<span class="token punctuation">.</span><span class="token function">updateTag</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> tag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>updatedTag <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Tag has been edited successfully&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Tag not found&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/tag{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">deleteTag</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Boolean</span> isDel <span class="token operator">=</span> tagService<span class="token punctuation">.</span><span class="token function">deleteTag</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>isDel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Tag has been deleted successfully.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Tag not found.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="taskcontroller-java"><a href="#taskcontroller-java" class="header-anchor">#</a> TaskController.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>controller</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Task</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">TaskService</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpStatus</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">ResponseEntity</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/duallo/tasks&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TaskController</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">TaskService</span> taskService<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;task{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Task</span><span class="token punctuation">&gt;</span></span> <span class="token function">getTaskByID</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Task</span> task <span class="token operator">=</span> taskService<span class="token punctuation">.</span><span class="token function">getTask</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>task <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>task<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/get&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Task</span><span class="token punctuation">&gt;</span></span> <span class="token function">getTasks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> taskService<span class="token punctuation">.</span><span class="token function">getTasks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/addtask&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">addTask</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">Task</span> task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Task</span> taskSaved <span class="token operator">=</span> taskService<span class="token punctuation">.</span><span class="token function">saveTask</span><span class="token punctuation">(</span>task<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>taskSaved <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token string">&quot;Task has been saved successfully&quot;</span><span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token string">&quot;Could not save the task&quot;</span><span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">INTERNAL_SERVER_ERROR</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@PatchMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/task{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">updateTask</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">,</span> <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">Task</span> task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Task</span> updatedTask <span class="token operator">=</span> taskService<span class="token punctuation">.</span><span class="token function">updateTask</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> task<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>updatedTask <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Task has been edited successfully.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Task not found.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">&quot;/task{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">deleteTask</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Boolean</span> isDel <span class="token operator">=</span> taskService<span class="token punctuation">.</span><span class="token function">deleteTask</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>isDel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Task has been deleted successfully.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">BAD_REQUEST</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">&quot;Task not found.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="services"><a href="#services" class="header-anchor">#</a> Services</h3> <h4 id="labelservice-java"><a href="#labelservice-java" class="header-anchor">#</a> LabelService.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>service</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Label</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>repo<span class="token punctuation">.</span></span><span class="token class-name">LabelRepository</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span></span><span class="token class-name">BeanUtils</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Service</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LabelService</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">LabelRepository</span> labelRepo<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabelByTask</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> labelRepo<span class="token punctuation">.</span><span class="token function">findByTaskID</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabelByTag</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> labelRepo<span class="token punctuation">.</span><span class="token function">findByTagID</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Label</span> <span class="token function">getLabelByTagAndTask</span><span class="token punctuation">(</span><span class="token keyword">long</span> taskID<span class="token punctuation">,</span> <span class="token keyword">long</span> tagID<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> labelRepo<span class="token punctuation">.</span><span class="token function">findByTaskIDAndTagID</span><span class="token punctuation">(</span>taskID<span class="token punctuation">,</span> tagID<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Label</span><span class="token punctuation">&gt;</span></span> <span class="token function">getLabels</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> labelRepo<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Label</span> <span class="token function">getLabel</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> labelRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Label</span> <span class="token function">saveLabel</span><span class="token punctuation">(</span><span class="token class-name">Label</span> label<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Label</span> labelSaved <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Label</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>label<span class="token punctuation">,</span> labelSaved<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> labelRepo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>labelSaved<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Label</span> <span class="token function">updateLabel</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">,</span> <span class="token class-name">Label</span> label<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Label</span> updatedLabel <span class="token operator">=</span> labelRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>updatedLabel <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>label<span class="token punctuation">.</span><span class="token function">getTagID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedLabel<span class="token punctuation">.</span><span class="token function">setTagID</span><span class="token punctuation">(</span>label<span class="token punctuation">.</span><span class="token function">getTagID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>label<span class="token punctuation">.</span><span class="token function">getTaskID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedLabel<span class="token punctuation">.</span><span class="token function">setTaskID</span><span class="token punctuation">(</span>label<span class="token punctuation">.</span><span class="token function">getTaskID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> labelRepo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>updatedLabel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Boolean</span> <span class="token function">deleteLabel</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Label</span> deleteLabel <span class="token operator">=</span> labelRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>deleteLabel <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            labelRepo<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>deleteLabel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="tagservice-java"><a href="#tagservice-java" class="header-anchor">#</a> TagService.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>service</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Tag</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Task</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>repo<span class="token punctuation">.</span></span><span class="token class-name">TagRepository</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span></span><span class="token class-name">BeanUtils</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpStatus</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">ResponseEntity</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Service</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">PathVariable</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">RequestBody</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TagService</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">TagRepository</span> tagRepo<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Tag</span><span class="token punctuation">&gt;</span></span> <span class="token function">getTags</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> tagRepo<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Tag</span> <span class="token function">getTag</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> tagRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Tag</span> <span class="token function">saveTag</span><span class="token punctuation">(</span><span class="token class-name">Tag</span> tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Tag</span> tagSaved <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>tag<span class="token punctuation">,</span> tagSaved<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> tagRepo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Tag</span> <span class="token function">updateTag</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">,</span> <span class="token class-name">Tag</span> tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Tag</span> updatedTag <span class="token operator">=</span> tagRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>updatedTag <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>tag<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedTag<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>tag<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>tag<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedTag<span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span>tag<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> tagRepo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>updatedTag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Boolean</span> <span class="token function">deleteTag</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Tag</span> deleteTag <span class="token operator">=</span> tagRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>deleteTag <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            tagRepo<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>deleteTag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="taskservice-java"><a href="#taskservice-java" class="header-anchor">#</a> TaskService.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>service</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token class-name">Task</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>duallo<span class="token punctuation">.</span>app<span class="token punctuation">.</span>rest<span class="token punctuation">.</span>repo<span class="token punctuation">.</span></span><span class="token class-name">TaskRepository</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span></span><span class="token class-name">BeanUtils</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Service</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TaskService</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token class-name">TaskRepository</span> taskRepo<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Task</span> <span class="token function">saveTask</span><span class="token punctuation">(</span><span class="token class-name">Task</span> task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Task</span> taskSaved <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Task</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>task<span class="token punctuation">,</span> taskSaved<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> taskRepo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>taskSaved<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Task</span> <span class="token function">getTask</span><span class="token punctuation">(</span><span class="token class-name">Long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> taskRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Task</span><span class="token punctuation">&gt;</span></span> <span class="token function">getTasks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> taskRepo<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Task</span> <span class="token function">updateTask</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">,</span> <span class="token class-name">Task</span> task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Task</span> updatedTask <span class="token operator">=</span> taskRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>updatedTask <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedTask<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedTask<span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getDeadline</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedTask<span class="token punctuation">.</span><span class="token function">setDeadline</span><span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getDeadline</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getCreationDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedTask<span class="token punctuation">.</span><span class="token function">setCreationDate</span><span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getCreationDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getSprintID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                updatedTask<span class="token punctuation">.</span><span class="token function">setSprintID</span><span class="token punctuation">(</span>task<span class="token punctuation">.</span><span class="token function">getSprintID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> taskRepo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>updatedTask<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Boolean</span> <span class="token function">deleteTask</span><span class="token punctuation">(</span><span class="token keyword">long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Task</span> deleteTask <span class="token operator">=</span> taskRepo<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>deleteTask <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            taskRepo<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>deleteTask<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">11/26/2023, 11:23:27 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/databases-course-work/design/" class="prev">
+        Проектування інформаційного забезпечення
+      </a></span> <span class="next"><a href="/databases-course-work/test/">
+        Тестування працездатності системи
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/databases-course-work/assets/js/app.4ae8db41.js" defer></script><script src="/databases-course-work/assets/js/2.d5928b1d.js" defer></script><script src="/databases-course-work/assets/js/1.82977ebd.js" defer></script><script src="/databases-course-work/assets/js/29.764689b0.js" defer></script>
+  </body>
+</html>
