@@ -50,6 +50,6 @@
 ## Отримати Label за Task_ID та Tag_ID
 ![Отримати Label за Task_ID та Tag_ID](https://github.com/witchkaa/databases-course-work/blob/master/docs/test/img/getLavelByTaskAndTag18.png?raw=true)
 ## Відредагувати Label
-![Відредагувати Label](https://github.com/witchkaa/databases-course-work/blob/master/docs/test/img/patch_label19.png)
+![Відредагувати Label](https://github.com/witchkaa/databases-course-work/blob/master/docs/test/img/patch_label19.png?raw=true)
 ## Видалити Label
-![Видалити Label](https://github.com/witchkaa/databases-course-work/blob/master/docs/test/img/delete_label20.png)
+![Видалити Label](https://github.com/witchkaa/databases-course-work/blob/master/docs/test/img/delete_label20.png?raw=true)
